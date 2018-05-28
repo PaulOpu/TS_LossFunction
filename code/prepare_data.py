@@ -16,4 +16,10 @@ def read_file(path):
 
 
 def del_twins(aligned_data):
-    return [ss for ss,ns in aligned_data if ss[-1] != ns[-1]]
+    return [(ss,ns) for ss,ns in aligned_data if ss[-1] != ns[-1]]
+
+
+def create_df(aligned_data):
+    data = [(st,sn,ss,nt,nn,ns) for (st,sn,ss),(nt,nn,ns) in aligned_data]
+    df = pd.DataFrame(data=list(data),columns=["simple_topic","simple_numb","simple_sentence","normal_topic","normal_numb","normal_sentence"])
+    return df
