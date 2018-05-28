@@ -1,3 +1,5 @@
+import pandas as pd
+
 def get_aligned_sentences(simple_path,normal_path,twins=True):
     sdata = read_file(simple_path)
     ndata = read_file(normal_path)
@@ -10,7 +12,7 @@ def get_aligned_sentences(simple_path,normal_path,twins=True):
 def read_file(path):
     with open(path,"r") as f:
         data = f.read()
-        data = data.split("\n")
+        data = data.lower().split("\n")
         data = [line.split("\t") for line in data]
         return data
 
