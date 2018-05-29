@@ -1,0 +1,35 @@
+Researchers turn to do-it-yourself devices in tracking marine life
+Studying ocean life is difficult. Electronics don't mix well with salt water, and waves knock things around. The deeper under the water you go, the darker and colder it gets.  
+
+Oceans account for more than two-thirds of the Earth's surface. However, only a small part of their area has been mapped well, said John Sparks. He is a scientist at the American Museum of Natural History in New York. It has a new Unseen Oceans exhibition. "We know more about the surface of Mars than the ocean floor," he said.
+
+When scientists want to track how the tiniest plants or the largest whales move around, they often lack the right tools. Some creatures are carried by currents, some move slowly through bays, and others cross long distances of open ocean. Scientists often have to come up with their own solutions, said Michael Novacek. He also works at the museum. 
+
+Scientists have to make rough, custom tools and sensors. Examples include a robotic fish that can blend in or squishy grippers that can grab corals carefully. Sparks said, "They build their own equipment. They solve their own problems." Here's how some of them have created ways to track creatures on the move.
+
+Sticking It To Jellyfish
+Kakani Katija, an engineer at the Monterey Bay Aquarium Research Institute in California, wants to know what moon jellyfish are up to. How do they behave in their natural environment? Do they stay in areas with plenty of food, or do they follow water currents? To answer questions like these, Katija needs data.
+
+The trouble is that the jellies are hard to handle or track. They are delicate and light, so scientists don't want to attach devices that can drag them down. Most tags and sensors are too big and heavy for them. 
+
+Scientists want to be sure that their tests aren't ruining their data. While studying behavior, how do you make sure that your devices don't change behavior? Katija asked. A sensor or tag needs to be small. So Katija and other scientists worked with Florida-based Loggerhead Instruments to design a slim tag. The next obstacle was finding a way to attach it.
+
+Katija and the others started playing around with different materials. They worked with aquariums to try them out on animals in tanks. It turned out that a solution for attaching the tag was in Katija's backpack.
+
+Katija carries medical glue, for treating cuts, in case her dog gets injured while they're out hiking. That glue proved to be a promising way to attach sensors to the jellyfish. The glue comes off in a few hours or days. The sensors are on a line and tied to a float, to be collected later.
+
+The tags will be used in the waters of Monterey Bay this month. 
+
+Riding The Waves Alongside Plankton
+Many sea creatures can swim against a current. Plankton, however, cannot. These tiny plants and animals, which are major sources of oxygen on the planet, are drifters who go with the currents. Although they are tiny, they are important to humans. Without them, "there goes our oxygen," said Sparks.
+
+Jules Jaffe is a scientist at Scripps Institution of Oceanography in San Diego, California. He wanted to get a better sense of how plankton move. Jaffe didn't attach anything to the plankton. Instead, he made sensors to go with them. He created mini underwater robot drifters. Made of foam pieces around sensors collecting temperature and more, these light tools are tossed over the side of a boat. Then they ride underwater currents, like plankton.
+
+The devices stay in the water for a few hours or a couple of days and are tracked by sound. Jaffe has used them off  La Jolla, California, and the Cayman Islands.
+
+"They're not exactly like a plankton," Jaffe said. They are larger, which affects the drag on them as they travel through the water. If the water is moving slowly enough, it's expected that they can get good data from them, he said. If the water is moving quickly, they might be left behind a little, and "we would worry about that," he said.
+
+Cameras Hitch A Ride With Whales
+A scientist stands on a boat, holding a long pole that dangles into the water. There's a whale up ahead. The scientist stretches the pole out a little farther and makes contact. With suction cups, he attaches sensors to the whale's back. Now the whale can be tracked.
+
+Jeremy Goldbogen is an assistant professor at Stanford University's Hopkins Marine Station in California. He worked with other scientists to make tags that contain mini-sensors and video recorders. These fit onto a piece of styrofoam a little larger than a human hand. The sensors gather data, and the video feed takes the scientists along for the ride.

@@ -1,0 +1,39 @@
+Ingenious researchers devise ways to expand knowledge of marine life
+Research is hard to do in the ocean. Electronics don't mix well with salt water, and waves knock things around. The deeper you go, the darker and colder it gets. Pressure mounts to crushing levels. 
+
+Oceans account for 70 percent of the Earth's surface. Their waters make up more than 99 percent of our biosphere, the parts of the land, sea and atmosphere in which living things can exist. However, only about 10 or 15 percent of it has been mapped with any precision, said curator and scientist John Sparks at a recent tour of the American Museum of Natural History's new Unseen Oceans exhibition in New York. "We know more about the surface of Mars than the ocean floor," he said.
+
+When scientists want to track how the tiniest plants or the largest of whales move through the ocean, they often lack the right tools for the job. Whether looking at creatures that are carried by currents, propel themselves slowly through bays, or cross long distances of open ocean, researchers often have to come up with their own machines and solutions, said Michael Novacek. He is also a curator at the museum. "It's not stuff that's off the shelf," he said.
+
+Researchers have to rig up rugged, inexpensive, custom tools and sensors that are adaptable. Examples include a robotic fish that can mix in with schools or squishy grippers that can grab corals with minimal damage. "They build their own equipment; they solve their own problems," Sparks said. Here's how some of them have engineered ways to track creatures on the move.
+
+Jellyfish Need A Light Touch
+Kakani Katija, an engineer at the Monterey Bay Aquarium Research Institute in California, wants to know what moon jellyfish are up to. How do they behave in their natural environment? Do they stay in areas where food is plentiful, or are they completely subject to currents? To answer questions like these, Katija needs data — acceleration, depth and temperature.
+
+The trouble is that the jellies are hard to handle or track. They are delicate and light, so researchers are reluctant to saddle them with devices that can drag them down. Most tags and sensors tend to be too bulky and heavy for them. 
+
+Scientists want to make sure that their tests aren't ruining their data. "If you're interested in behavior, how do you ensure that the way you're attaching (a device) doesn't change behavior?" Katija asked. To control for this, a data-collecting tag needs to be small and aerodynamic. So Katija and other scientists worked with Florida-based Loggerhead Instruments to engineer a slim tag. The next hurdle was finding a way to attach it.
+
+Some researchers had tried putting equipment on jellies with zip ties, but not all of them have the right kind of body parts for that. Katija and the others started playing around with different materials and adhesives. They worked with aquariums to try them out on animals in tanks. One of the best solutions for attaching the tag, it turned out, was in Katija's backpack.
+
+Katija keeps veterinary glue, for treating cuts, on hand in case her dog gets injured while they're out hiking. That glue has proved to be a promising way to attach sensors to the jellyfish. The glue holds tight and then comes off in a few hours or days. The sensors are strung on a line and tied to a float, so the researchers can use GPS to collect them.
+
+The tags will be used in the water of Monterey Bay this month. 
+
+Floaters Ride Currents With Plankton
+Many sea creatures — fish, whales and the like — can swim against a current. Plankton, however, cannot. These microscopic plants and animals, which provide the base of the marine food chain and are major sources of oxygen in the atmosphere, are drifters who go where the currents take them. Despite their tiny size, their fate matters a great deal. Without them, "there goes our oxygen," said Sparks.
+
+Jules Jaffe, a scientist at the Marine Physical Laboratory at Scripps Institution of Oceanography, University of California, San Diego, wanted to get a better sense of how and where plankton move. His "miniature underwater robot drifters" stand in for the tiny organisms. Composed of foam cylinders around sensors collecting temperature, pressure and more, these floaters are tossed over the side of a boat. Then they ride underwater currents, just like plankton.
+
+Researchers use sound to track the devices, which stay in the water for a few hours or a couple of days at a time. So far Jaffe has used them off  La Jolla, California, and the Cayman Islands.
+
+"These guys aren't bad, but they're not exactly like a plankton," Jaffe said. For one thing, they are considerably larger, which affects the drag on them as they travel through the water. If the water is moving slowly enough, it's expected that they can get meaningful data from them, he said. "If the water was really accelerating, they might be left behind a little bit, and then we would worry about that."
+
+Jaffe looks forward to more tinkering — to a 3-D-printed future full of "smaller, cheaper, faster things." He's already pretty amazed by how his devices have provided a never-before-seen view into the planktonic world. "Nobody would have seen this before unless you put yourself in their reference frame," he said. 
+
+Suction Cups And Whales
+A researcher stands at the front of a boat, holding a long pole that dangles into the water. There's a whale up ahead, a flash of a fin or a plume of spray. The researcher stretches the pole out just a little farther and makes contact. With suction cups, he attaches a collection of lightweight sensors to the whale's back. When the whale dives back underwater, a whole scientific crew is going along for the ride.
+
+Jeremy Goldbogen, an assistant professor at Stanford University's Hopkins Marine Station in California, worked with other scientists to make tags that contain miniature sensors and video recorders. These fit onto a piece of styrofoam a little larger than a human hand. The sensors gather data, and the video feed shows what is happening.
+
+The suction cups proved to be a clever way to attach the piece to a whale's smooth body. They are critical for studying species that surface briefly and spend long stretches underwater. You might have only a few chances to make the sensors stick. The team is tagging minke whales off the Antarctic Peninsula, a whale that is more than 20 feet long.  The team is learning more about movement patterns, eating habits and day-to-day life in the ocean's depths.
