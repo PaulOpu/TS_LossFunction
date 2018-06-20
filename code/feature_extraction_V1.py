@@ -102,6 +102,20 @@ def pos_token_count(pos_text,tag_symb):
 #######------------------- Ensemble Feature Function
 
 def get_text_features_V1(text):
+    #Returns the the following features for the given text:
+    #Mean Word Length
+    #Mean Sentence Length
+    #Proportion of Basic English Words in the text
+    #Number of Syllables per Sentence
+    #TTR Ratio
+    #Token Counts per Sentence and Category:
+    #   - Nouns
+    #   - Verbs
+    #   - Adjectives
+    #   - Adverb
+    #   - Pronoun
+    
+    
     #tokenize, pos tagging, lemmatize
     tok_text,pos_text = tok_pos_tagging(text)
     lem_text = lemmatize_text(tok_text,pos_text)
@@ -131,5 +145,5 @@ def get_text_features_V1(text):
         token_count += [pos_token_count(pos_text,tag)]
     
     #tok_text,pos_text,lem_text
-    return mean_word_len,mean_sent_len,basic_eng_ratio,syll_sent_ratio,ttr_ratio,token_count
+    return np.concatenate([[mean_word_len,mean_sent_len,basic_eng_ratio,syll_sent_ratio,ttr_ratio],token_count])
     
