@@ -1,0 +1,55 @@
+Group of high schoolers creates award-winning "Sea Wander" app
+
+A group of high school students from Thailand used what they learned about history to make an award-winning mobile app. 
+
+The app is called "Sea Wander." In it, you can explore cartoonish versions of Malaysia's Petronas Twin Towers, Singapore's Merlion and Thailand's golden temples. All of these Southeast Asian landmarks glide along on the screen. 
+
+Bright Cartoons And Games
+
+The team who made it, NASHIMETEKO, spent one month building it for the UNESCO & Microsoft Hackathon for Culture and Peace on May 21, 2018. 
+
+The United Nations Educational, Scientific and Cultural Organization (UNESCO) is an organization within the United Nations. It highlights specific cultures, customs and histories throughout the world.
+
+The mobile app, with its brightly-colored cartoon characters and educational games, was crowned the winner.  
+
+Eighteen-year-old Yensira Chaisuk, nicknamed "Shin," is one of the five team members in NASHIMETEKO. "I learned so many new things that I can take back and use in my work and even a new perspective for history," she said. She notes that many things in Southeast Asia come "from the same roots in so many aspects."
+
+The NASHIMETEKO team is named after the first syllables of each of the five members' names. The team won 20,000 Thai baht, about $600 of prize money. They even got a trophy from Her Royal Highness Princess, Maha Chakri Sirindhorn. 
+
+Young Women And STEM
+
+The five high school teammates are from the Rayong Wittayakom School in Rayong province. It's about 3.5 hours away from Bangkok, Thailand's capital city. They are about to enter their first years in their universities. They plan to continue their studies in science, engineering and the arts.
+
+The technology company, Microsoft, is trying to encourage young women to enter the fields of science, technology, engineering and mathematics, known as STEM. The UNESCO & Microsoft Hackathon for Culture and Peace was organized as part of that effort. 
+
+Today, only 30 percent of STEM graduates in Thailand are women. A requirement to compete in the hackathon included having at least mixed-gendered teams.
+
+"When I was a child, I loved to draw," said 17-year-old Nappasorn Sangkiew, another team member. "I started drawing on paper, then it went on to the notebook computer as digital painting, and then it evolved into designing logos and doing graphic animation." 
+
+A Game Of Cultural Folktales
+
+The "Sea Wander" app allows its players to choose between playing as a farmer in Bali growing rice and a Cambodian silk maker. The game uses cultural folktales to help educate users on the history of rice and silk. During the game's storyline, players may start plowing fields or feeding silk worms in mini-games.
+
+"I myself am a mother of a 5-year-old, which is why I want to know where I can download this app," said one of the judges, Montira Unakul. She works at UNESCO Bangkok. "I think my son would want to play this game, and even many of the adults sitting in this room would want to play it, too."
+
+The judges on the panel were allowed two votes each as their final choices. NASHIMETEKO was picked by all five judges, resulting in a unanimous decision to declare them the winner. Other teams developed applications that implemented story-based time travel, an educational journey on spice trade routes, and augmented reality questionnaires. 
+
+In augmented reality (AR) apps, smartphones can, for example, overlay an image onto the real-world environment around them. A popular example of AR is the game "Pokemon Go." 
+
+Fostering Good Relations Between Neighbors
+
+There were five finalist teams at the winner announcement session at UNESCO Bangkok. Since the program launched on March 27, each team has had to propose and design a web or mobile educational application that teaches the shared history of Southeast Asia. Then, they would present it to the panel of judges. 
+
+The purpose of the application falls in line with UNESCO's Shared Histories project, launched in 2015. Its goal is to ease tensions among Southeast Asian countries and promote understanding between neighbors.
+
+According to historians, Southeast Asia history classes often portray nearby countries as opponents. Each of the 11 countries' schools often promote their own national identities. 
+
+These hostile portrayals influenced generations of people's thinking. The Shared Histories project is aimed at providing new unbiased views of history. It proposes new ways of teaching it while emphasizing similarities between nations to cultivate respect.
+
+"We believe that education is very important," said Desarack Teso, an official at Microsoft, and one of the judges. "The job of today may not exist tomorrow, and the job of tomorrow may not exist today, so you don't really know the skills that you need to compete in your future."
+
+A Future-Ready World
+
+The "Sea Wander" app has kid-friendly graphics, clear text, upbeat tunes and smooth gameplay. Teso lauded the program as an outstanding example of blending technology and learning. It reflects Microsoft's belief that "technology, no matter how advanced, is meant to serve and improve the capability of humanity," he said.
+
+The hackathon is in line with Microsoft's goal to help people attain the skills and knowledge needed to succeed in the digital world. The company wants people to become "future-ready," free of technological obstacles, biased thinking and outdated ideas. That future includes bringing more women into technology.

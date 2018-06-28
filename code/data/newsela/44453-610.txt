@@ -1,0 +1,35 @@
+People have made the first computer that can hold a debate with humans
+
+SAN FRANCISCO, California – IBM computers beat the best chess players in the world. The computers also beat people at the game show "Jeopardy!" Now, these smart computers tried to beat people in debates.
+
+A debate is when people present their opinion on a topic. People state their opinion and give supporting reasons. They try to convince other people that their idea is best. 
+
+On Monday, June 18, an IBM computer debated a person. It was the first time anyone outside IBM got to see it happen. 
+
+The debate happened in front of reporters in San Francisco, California. The black IBM computer was up against some of the best debaters in the world. The computer has been programmed with artificial intelligence (AI). AI allows the computer to learn and make decisions. 
+
+"Project Debater" Faced Two Human Experts
+
+The computer has a face. It has a name, too. It's called "Project Debater."
+
+In one debate, the topic was governments paying for space travel. Project Debater said governments should pay to study outer space. The debate was against Noa Ovadia. She is a debate champion from Israel. Ovadia argued that governments should not pay to study space. 
+
+The crowd voted Ovadia the winner. The computer tried to be funny, like a person. Ovadia did a better job, though. However, the computer outscored Ovadia in another way. Project Debater taught people more facts.
+
+IBM's computer did well in a second debate, too. The debate was about telemedicine. This is when doctors help patients over the Internet. The computer supported telemedicine. Nine people changed their minds and agreed with Project Debater.
+
+The Computer Still Has Trouble Using Language
+
+Arvind Krishna leads an IBM team. His team studies what computers can do. Krishna says computers are not masters at talking and listening yet. They know what words someone has used. Still, computers do not always know what a person means. In debates, a computer must understand this quickly.
+
+Other companies are trying to make the smartest AI computers too. They include Google, Apple and Facebook. 
+
+Krishna says Project Debater has become smarter. Two years ago, the computer would make one or two smart statements. Yet it would also make 10 foolish statements. Krishna says it now makes fewer foolish statements.
+
+AI Can Help Humans In Many Ways
+
+Krishna says a computer that debates can help people. It shows people both sides of an idea. This could help lawmakers decide on important laws. Students might also use AI computers to help decide about an idea.
+
+The debater Ovadia was impressed. She said Project Debater thought about many things at once, like people do. 
+
+"I'm blown away," she said.
