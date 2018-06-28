@@ -1,0 +1,35 @@
+Spiders can float in the air; scientists just figured out how they lift off
+
+Spiders fall from the sky all the time. Most airborne spiders are small and scattered, so they often go unnoticed, except when they descend all at once. A rain of spiders drowned the Australian town of Goulburn in silk in 2015. A Goulburn resident who bravely looked up saw a several-hundred-yard tunnel of spiderlings in the air, he said. The spiders parachuted in on long strands of webbing, a behavior that biologists call "ballooning."
+
+Records of spider ballooning go back centuries. But scientists have struggled to understand how the arachnids generate lift. One physicist proposed that they use electrostatic forces to take to the sky. A new study in the journal PLOS Biology focuses on silk, not static. It's the most detailed examination yet of the skinny spider fibers that lasso the wind.
+
+Hervé Elettro, who studies silk and bio-inspired materials at the Swiss Federal Institute of Technology, called the research "the first rigorous experimental study" to cut through the multiple theories about spider ballooning. The tiny silk fibers, he said, "experience the right drag for the spider to be lifted with relatively little effort."
+
+This ballooning is all about dispersal. Spiders are some of the first animals to show up on new volcanic islands. When floating spiders boarded the HMS Beagle in 1832, naturalist Charles Darwin wrote in his journal, "I caught some of the Aeronaut spiders which must have come at least 60 miles."
+
+Decades later, an entomologist with the U.S. Department of Agriculture captured a spider, using an insect trap affixed to an aircraft, nearly three miles above sea level. That's much higher than most winged insects can fly, said Moonsung Cho, a researcher at the Technical University of Berlin in Germany and an author of the new report.
+
+Cho first saw wild ballooning spiders on a walk through Berlin's Lilienthal Park - a memorial to Otto Lilienthal, a German aviation pioneer who died in a gliding accident in 1896. Cho, an electrical engineer by training, was inspired; maybe human designs could copy this aerial technique, he thought.
+
+He and his colleagues caught a dozen crab spiders from the park. Crab spiders are relatively large for ballooning spiders - at a few dozen milligrams, one weighs about as much as a grain of rice. (Most other spiders that balloon are smaller or juveniles.) The scientists constructed an outdoor platform, similar to a launchpad, and placed the spiders on top.
+
+Before a spider ballooned, it searched for the highest point on the domed platform, Cho said. Once there, something peculiar happened.  The spider reached up with a foreleg. If you were feeling anthropomorphic, you might compare it to a golfer's spit-slick finger testing for the prevailing breeze.
+
+Cho was careful to say that he couldn't know whether the foreleg twitch was intended. But there was a high frequency of these leg lifts right before the spiders ballooned.
+
+"You always want to be careful about interpreting behavior," said biologist Steve Yanoviak of the University of Louisville in Kentucky, who has studied gliding spiders. However, he said, the authors "make a good case the spiders are probably sensing air currents."
+
+After the foreleg lift, the spiders posed in what Cho called the "tiptoe" stance. High on their legs, the spiders stuck their rears upward, sprayed out silk and zipped into the sky. Like a kite torn from a toddler's grip, a spider was gone with the wind in seconds.
+
+"It is plausible that spiders can sense wind speed and direction using sensory hairs by raising their legs," said Monica Mowery, a doctoral student at the University of Toronto in Canada who has studied ballooning by black widows.
+
+The crab spiders did not balloon at high wind speeds, the authors observed. If the wind blew faster than three meters per second, or 6.7 miles per hour, (anything more than a gentle breeze), they waited for calmer conditions.
+
+It wasn't easy to study the ballooning silk, Cho said. Unless light catches the strands in just the right way, the fibers are invisible. So Cho captured a few more crab spiders and put them in a wind tunnel. He placed a reel behind them and, when the spiders sprayed their silk, spooled it up like fishing line.
+
+The average silk strand was nine feet long but just 200 nanometers in diameter. That's thinner than the wavelength of visible light. At such unfathomable small scales, "the air is very sticky, like honey," Cho said. The interaction between sticky air and skinny threads, the authors conclude, pulls spiders into the air.
+
+"They've put a very fine point on how silk interacts with air currents," Yanoviak noted.
+
+Cho is working on a computer simulation to mimic these flights. After that, he'd like to create tiny structures that can float in the atmosphere like a spider. Just don't ask him how those structures will fall where he wants them to - nobody knows how, or whether, ballooning spiders steer themselves down.
