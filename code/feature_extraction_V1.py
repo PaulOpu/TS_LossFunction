@@ -79,10 +79,10 @@ def calc_syllables_count(tok_text):
         )
     )/len(tok_text)
 
-def TTR(pos_text): 
+def TTR(tok_text): 
     words = {} 
     num_words = 0 
-    for line in pos_text: 
+    for line in tok_text: 
         for word in line: 
             num_words += 1 
             if word in words: 
@@ -91,6 +91,9 @@ def TTR(pos_text):
                 words[word] = 1 
     return len(words) / num_words 
 
+def TTR2(tok_text):
+    word_list = np.concatenate(tok_text)
+    return (len(set(word_list)))/(len(word_list))
 
 def pos_token_count(pos_text,tag_symb):
     #Token Count for first letter of Tokens
@@ -136,7 +139,7 @@ def get_text_features_V1(text):
     syll_sent_ratio = calc_syllables_count(tok_text)
     
     #TTR
-    ttr_ratio = TTR(pos_text)
+    ttr_ratio = TTR2(tok_text)
     
     #POS Token per Sentence
     #Noun, Verb, Adjective, Adverb, Pronoun
