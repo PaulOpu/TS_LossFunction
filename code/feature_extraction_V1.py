@@ -7,6 +7,8 @@ from nltk.corpus import wordnet
 from collections import Counter
 import matplotlib.pyplot as plt
 import pyphen
+from sklearn import linear_model
+from sklearn.metrics import mean_squared_error
 dic = pyphen.Pyphen(lang='en')
 
 
@@ -149,4 +151,36 @@ def get_text_features_V1(text):
     
     #tok_text,pos_text,lem_text
     return np.concatenate([[mean_word_len,mean_sent_len,basic_eng_ratio,syll_sent_ratio,ttr_ratio],token_count])
+
+
+
+
+def train_eval_model(x_train,y_train,x_test,y_test,model_fn):
+    if model_fn == linear_model.LogisticRegressionCV:
+        model = model_fn()
+    else:
+        model = model_fn(normalize=True,)
     
+    model.fit(x_train,y_train)
+    
+    print("Evaluation: \n Score: {} \n Feature Importance:".format(model.score(x_train,y_train)))
+    for row in zip(*[x_train.columns,model.coef_]):
+        print(row)
+    
+    print("Prediction: ")
+    print(model.predict(x_test))
+    print("Actual: ")
+    print(y_test)
+    
+
+def eval_exclude_cols(df,exclude,x_test,y_test,model_fn):
+    col_without = df.columns[2:-1]
+    bool_without = [col not in exclude for col in col_without]
+    col_without = col_without[bool_without]
+    
+    x_train = df[col_without]
+    y_train = df["newsela_score"]
+    x_test = [row[bool_without] for row in x_test]
+    
+    train_eval_model(
+        x_train,y_train,x_test,y_test,model_fn)
