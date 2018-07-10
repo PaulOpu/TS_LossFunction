@@ -1,0 +1,224 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{comment}
+
+\title{Learning a Loss Function for Text Simplification}
+\author{Rebekah Cramerus, Malte Klingenberg, Paul Opuchlich}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\end{abstract}
+
+\section{Introduction}
+
+Automatic text simplification is a current open problem in the field of natural language processing in which the goal is to take a text and transform it, while retaining the same meaning, into a more comprehensible and altogether simpler version of itself \cite{siddharthan2014survey} \cite{coster2011simple}. Text simplification has many applications, either as a step in preprocessing (for example, in text summarization or translation), or as a method of increasing accessibility to texts otherwise too complex for some readers. Automating this process is a new area of research in natural language processing (NLP), and various methodologies have been used in approaching it.
+
+With the rise of neural networks in the field of machine learning, researchers now can apply these new models to text simplification. A problem, however, arises in the training step: training a neural network using gradient descent requires a differentiable loss function. In the case of text simplification, a loss function would analyze a text and determine its level of complexity. But typically the features which are used to calculate text complexity are not continuous, but defined stepwise - for example, counts of certain part of speech tags, or syntactic dependencies, which in themselves require a parser to find - and as such do not comprise a differentiable function.
+
+Therefore, we chose to train a "helper" network to calculate complexity scores for given texts, for the purpose of being used as a loss function in a text simplifier neural network. In order to train this network, of course, data is required: texts with associated complexity scores. We found a lack of appropriate English language, labeled data in what was available. A lack of data in text simplification has previously hindered data-driven techniques, and many early attempts at the task employed hand-crafted rules \cite{coster2011simple} \cite{siddharthan2014survey}.
+
+In that data that is available, sometimes the labels were discrete and not continuous, as in the Newsela texts, roughly divided by grade level, or in the Wikipedia Simple English corpus, with only two classes \cite{coster2011simple}. Most sources did not cover a wide enough range of difficulty. Newsela articles, for example, range from elementary to high school, which does not represent the whole range of text complexity in English. A network trained on this data might not be able to handle texts of complexities outside of its domain. Lastly, the features behind the given complexity scores in many datasets are opaque or undocumented. To serve as a loss function the helper network ideally would identify varied linguistic features - not, for example, only shallow features like  sentence or word length, which can show high correlation with difficulty but do not encapsulate the syntactic or lexical background to complexity \cite{siddharthan2004syntactic}. Training a loss function on a dataset with explicit features behind the labels at least increases the chance that the neural network will converge to those same features. For these reasons, we built a rule-based system to determine text complexity, in order to gather a labeled dataset for use in training the loss function network.
+
+The first part of our project was the creation off this rule-based function. We used existing literature to support our choice of features, wrote methods to extract those features from given texts, and transformed the resulting feature vectors into continuous scores. We detail the results of this process in Section 2, naming the features we chose and how we extract them.
+
+The second part of our project was the selection of an appropriate architecture for a neural network, followed by the training of this network on data with scores given by our complexity function. The texts we chose for training and the methodology behind the network are discussed in Section 3.
+
+Finally, the results of our loss function neural network, analysis and conclusions are covered in Sections 4, 5 and 6.
+
+\section{Rule-based Function for Difficulty Score}
+
+\subsection{Literature Review}
+
+Looking at previous literature was an integral part of our feature selection process. To properly determine text complexity, it was necessary that each of our chosen features have strong linguistic motivation. We looked at papers published on datasets for text simplification, previous approaches to the text simplification task, and experiments similar to ours on determining text complexity.
+
+In recent years research on text simplification has been dominated by Wikipedia Simple English and the different corpora it has produced \cite{siddharthan2014survey} \cite{coster2011simple}. The data provided by Wikipedia Simple English helped fill a lack that previously had defined the field. In 2015, Xu et al. published a paper asserting that the Wikipedia dataset is deficient and should no longer be considered the benchmark corpus for text simplification \cite{xu2015problems}. They analyzed the aligned dataset (by Zhu et al. 2010), and found that only 50\% of the pairs were simplifications at all, and of those only 12\% involved both deletion and paraphrasing, the other 38\% being either one or the other. Because Simple English Wikipedia was collaboratively written by volunteer contributors with no specific guidelines or objectives, it is unreliable as a dataset. In response, Xu et al. assembled a new corpus based on the Newsela website, which stores a collection of news articles simplified to different levels. Unlike the Wikipedia corpus, which necessarily involves complex vocabulary in both simplicity levels due to its status as an encyclopedia, the Newsela corpus vocabulary drops by 50.8\% at its simplest level. Because the articles are also consistent in length, the Newsela dataset also can allow document-level comparison - for example, on rhetorical structure. We reached out to Newsela requesting the dataset; however, lack of a timely response meant that we were only able to use some articles from the website and not the whole corpus.
+
+Siddharthan (2014) provides a comprehensive overview of research in the field of text simplification up to that point. Many systems focus either on syntactic, hand-crafted rules or on statistical models, although the divide between the two is mostly artificial and not necessarily binary \cite{siddharthan2014survey}. Syntactic simplification tends to involve a finite number of constructs, most commonly relative clauses, apposition, coordination, subordination and voice, and hand-crafted rules can cover this well. The switch to data-driven methods happens when lexical simplification is the focus (or syntactic rules with lexical components). In this case there are far too many possible substitutions (for example) to write out by hand.
+
+
+
+\begin{comment}
+[xu2015problems]
+uses readability metrics (chars per word, words per sent, etc) to support the claim that there is better and appropriate simplification happening between the different levels
+
+[siddharthan survey]
+early: Chandrasekar et al 1996: hand crafted, syntactic focus, and simplification
+relative clauses
+appositives
+coordinating clauses
+
+also early: Dras 1999: integer programming, map between TAG grammars
+light verb constructions (complex verbs)
+clausal components
+genitives (the arrival of the train -> the train's arrival)
+cleft constructions (it was his best suit that...)
+To evaluate these costs, Dras found it necessary to impose a restriction on one
+paraphrase operation per sentence, in order to avoid interactions between opera-
+tions. This was rather restrictive, but it did mean that certain problems with syn-
+tactic simplification, such as the effect on coherence, could be largely avoided.
+Indeed most work on simplification has avoided consideration of discourse level
+issues. A key insight from Dras (1999) is the following: It is the properties of the
+text as a whole that need to be optimised, not the properties of sentences in isola-
+tion.
+
+Canning 2002 & Carroll et al 1998 PSET -> parser + hand crafted rules over phrase trees
+coordinated clauses
+passive voice
+pronoun replacement/anaphora
+synonym substitution, word frequency to determine relative difficulty
+
+siddharthan on his own thesis: one goal was to perform simplification without parsers - using machine learning to identify clauses and attachment based on POS tags and shallow chunking - but this is less relevant now as parsers are much faster (but they are suboptimal when it comes to some important tasks, such as relative clause attachment)
+second goal - analysis of discourse and coherence implications of syntactic simplification, involving a detailed study of syntactic simplification with an emphasis on the preservation of text cohesion
+relative clauses, apposition, coordination, subordination - then use computational models of discourse structure to minimize disruption in discourse structure
+
+contemporary systems - monolingual translation task - accelerated thanks to the simple english wikipedia corpus
+machine translation approaches
+tree-to-tree translation
+
+candido jr et al 2009 - rule-based system, hand-crafted, brazilian portuguese - passive to active, clause order, SVO, topicalization/detopicalization of adverbial phrases
+de belder & moens - relative clauses, apposition, subordination and coordination
+
+dependency parsers now that they've been big
+bott et al, 2012 - spanish - relative clauses, coordination, participle constructions
+
+siddharthan 2011 - dependency, relative clauses, apposition, voice conversion, coordination, quotation inversion
+
+hand-crafted systems are limited in scope to syntactic simplification
+statistical systems become better
+recent attempts for hybrid systems - handwritten syntax + automatically acquired rules for lexicalised constructs
+
+lexical simplification:
+synonym substitution
+word frequency statistics
+ambiguity is a factor (walker et al 2011)
+some use of simple english wikipedia to determine word difficulty
+
+no consensus on how text simplification systems should be evaluated -
+BLEU/ROUGE - skepticism - fluency judgments in a monolingual case are more subtle than for machine translation since there are many ways to 'translate'
+readability metrics - average word and sentence length (flesch metric - flesch 1951) - only indirect assessments of grammaticality or comprehensibility (readability =\= comprehensibility)
+
+[siddharthan thesis]
+conjunction
+relative clauses
+apposition
+
+flesch: valid (correlates with teacher judgments), reliable (consistent), easy to use
+syllables per hundred words x words per sentence, followed by mapping
+can be very easily abused: it is easily shown that this does not mean simplicity if you purposefully create, for example, short sentences with difficult words
+simpler words =\= shorter ones
+still uses it as an evaluation metric
+found an increase in overall text length (the guardian), decrease in average sentence length
+
+[aluisio]
+readability assessment to support process of text simplification (SIMPLIFICA, a portuguese authoring tool) - evaluate a text and decide whether it is ready for a certain audience
+uses machine learning techniques
+at times uses readability and complexity interchangeably, and the distinction they draw is not clear, features used are between the two (the readability assessment tool automatically detects the level of complexity of a text at any moment of the authoring process...)
+uses in a classiication model (rudimentary, basic or advanced)
+59 features - cognitively motivated, syntactic, and n-gram language models - # words, sent, paragraphs, POS tags, avg words/sent syll/word, sent/paragraph, Flesch index, lexical frequencies, NP modifiers, all flavors of connectives, TTR, pronoun-NP, conjunctions, ambiguities lexical, clauses, adverbial phrases, apposition, passive voice, relative clauses, coordination, subordination, probabilities and perplexities of n grams to tri
+feature experiments led highest correlation to be : words per sentence, apposition, clauses, flesch index, words before main verb, sentences per paragraph, relative clauses, syllables per word
+shows that traditional cognitively motivated features can be complemented with more superficial features
+combination of all features consistently yields better results than any subsets - performances among subsets vary considerably - showing that the combination is more robus across different learning techniques
+
+\end{comment}
+
+\subsection{Features}
+
+
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|l|}
+\multicolumn{1}{l}{\textbf{Feature Type}} & \multicolumn{1}{l}{\textbf{Feature Name}} \\
+Syntactic: Dependency Parsing & Subordination \\
+ & Complements \\
+ & Coordination \\
+ & Apposition \\
+ & Passive Verbs \\
+ & Parataxis \\
+ & Auxiliary Verbs \\
+ & Negation \\
+ & Prepositional Phrases \\
+ & Modifiers \\
+Syntactic: POS Tags & Nouns \\
+ & Verbs \\
+ & Adjectives \\
+ & Adverbs \\
+ & Pronouns \\
+Lexical & Mean Word Length \\
+ & Type Token Ratio \\
+ & Basic English Ratio \\
+Other & Syllables per Sentence \\
+ & Sentence Length \\
+ & Commas
+\\\hline
+\end{tabular}
+\label{feature_table}
+\caption{Features for Text Complexity Function}
+\end{table}
+
+lexical features: average word length, ratio of basic english
+words, type-token ratio... why not others?
+syntactical features: number of subordinate clauses,
+prepositional phrases, passive voice...
+semantic features: too hard (cohesion, coherence, discourse relations)
+
+\subsubsection{Syntactic Features}
+
+\subsubsection{Lexical Features}
+
+\subsubsection{Other Counts}
+
+\subsection{Scoring}
+
+\section{Neural Network Loss Function}
+
+\subsection{Data}
+
+British Council „LearnEnglish“, News in levels etc.
+but: only small number of difficulty levels
+hopefully: Newsela (quasi-continuous difficulty scale)
+LSAT
+wikipedia
+
+\subsection{Methods}
+
+\section{Results}
+
+\section{Discussion}
+
+\section{Conclusion}
+
+% \[ \min_{\beta} L(\beta) = \frac{1}{2N}\sum_{i=1}^{N}(\left \langle \beta, v_{i}  \right \rangle + \beta_{0} - y_{i})^{2}  + \frac{\lambda}{2} \lVert \beta \rVert_2^2\]
+
+%%\begin{figure}
+%%\centering
+%%\includegraphics[width=.5\textwidth]{total_num_relations.png}
+%%\caption{\label{fig:totalrel}The number of annotated discourse relations in each of the five texts, for both English and Russian.}
+%%\end{figure}
+
+%%use \ref{fig:name}
+
+\cite{bird2009nltk}
+\cite{aluisio2010readability}
+\cite{honnibal-johnson:2015:EMNLP}
+
+\bibliographystyle{apalike}
+\bibliography{workscited}
+
+\end{document}
+
