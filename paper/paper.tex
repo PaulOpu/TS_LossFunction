@@ -46,76 +46,22 @@ Finally, the results of our loss function neural network, analysis and conclusio
 
 Looking at previous literature was an integral part of our feature selection process. To properly determine text complexity, it was necessary that each of our chosen features have strong linguistic motivation. We looked at papers published on datasets for text simplification, previous approaches to the text simplification task, and experiments similar to ours on determining text complexity.
 
-In recent years research on text simplification has been dominated by Wikipedia Simple English and the different corpora it has produced \cite{siddharthan2014survey} \cite{coster2011simple}. The data provided by Wikipedia Simple English helped fill a lack that previously had defined the field. In 2015, Xu et al. published a paper asserting that the Wikipedia dataset is deficient and should no longer be considered the benchmark corpus for text simplification \cite{xu2015problems}. They analyzed the aligned dataset (by Zhu et al. 2010), and found that only 50\% of the pairs were simplifications at all, and of those only 12\% involved both deletion and paraphrasing, the other 38\% being either one or the other. Because Simple English Wikipedia was collaboratively written by volunteer contributors with no specific guidelines or objectives, it is unreliable as a dataset. In response, Xu et al. assembled a new corpus based on the Newsela website, which stores a collection of news articles simplified to different levels. Unlike the Wikipedia corpus, which necessarily involves complex vocabulary in both simplicity levels due to its status as an encyclopedia, the Newsela corpus vocabulary drops by 50.8\% at its simplest level. Because the articles are also consistent in length, the Newsela dataset also can allow document-level comparison - for example, on rhetorical structure. We reached out to Newsela requesting the dataset; however, lack of a timely response meant that we were only able to use some articles from the website and not the whole corpus.
+In recent years research on text simplification has been dominated by Wikipedia Simple English and the different corpora it has produced \cite{siddharthan2014survey} \cite{coster2011simple}. The data provided by Wikipedia Simple English helped fill a lack that previously had defined the field. In 2015, Xu et al. published a paper asserting that the Wikipedia dataset is deficient and should no longer be considered the benchmark corpus for text simplification \cite{xu2015problems}. They analyzed the aligned dataset (by Zhu et al. 2010), and found that only 50\% of the pairs were simplifications at all, and of those only 12\% involved both deletion and paraphrasing, the other 38\% being either one or the other. Because Simple English Wikipedia was collaboratively written by volunteer contributors with no specific guidelines or objectives, it is unreliable as a dataset. In response, Xu et al. assembled a new corpus based on the Newsela website, which stores a collection of news articles simplified to different levels. Unlike the Wikipedia corpus, which necessarily involves complex vocabulary in both simplicity levels due to its status as an encyclopedia, the Newsela corpus vocabulary drops by 50.8\% at its simplest level. Because the articles are also consistent in length, the Newsela dataset also can allow document-level comparison - for example, on rhetorical structure. We reached out to Newsela requesting the dataset; however, lack of a timely response meant that we gathered the articles ourselves \cite{xu2015problems}.
 
-Siddharthan (2014) provides a comprehensive overview of research in the field of text simplification up to that point. Many systems focus either on syntactic, hand-crafted rules or on statistical models, although the divide between the two is mostly artificial and not necessarily binary \cite{siddharthan2014survey}. Syntactic simplification tends to involve a finite number of constructs, most commonly relative clauses, apposition, coordination, subordination and voice, and hand-crafted rules can cover this well. The switch to data-driven methods happens when lexical simplification is the focus (or syntactic rules with lexical components). In this case there are far too many possible substitutions (for example) to write out by hand.
+Siddharthan (2014) provides a comprehensive overview of research in the field of text simplification up to that point. Many systems focus either on syntactic, hand-crafted rules or on statistical models, although the divide between the two is mostly artificial and not necessarily binary. Syntactic simplification tends to involve a finite number of constructs, most commonly relative clauses, apposition, coordination, subordination and voice, and hand-crafted rules can cover this well. The switch to data-driven methods happens when lexical simplification is the focus (or syntactic rules with lexical components). In this case there are far too many possible substitutions (for example) to write out by hand. Word frequency statistics often are necessary, and metrics for word difficulty - some of which have been formulated using the Simple English Wikipedia corpus. Synonym substitution is a common method, and word ambiguity also must be taken into account. There have been recent attempts at hybrid approaches, using handwritten syntax plus rules acquired during machine learning for the lexical side \cite{siddharthan2014survey}.
 
+One of the earliest approaches was Chandrasekar et al. (1996): a hand-crafted system of syntactic rules for simplification. They simplified relative clauses, appositives and coordination. Another early approach was Dras (1999), which focused on complex verb constructions, clausal components, cleft constructions, and genitive constructions. Multiple changes happening in individual sentences could cause issues with coherence, though, and so the author chose to limit operations to one per sentence. This brought attention in the field to issues on discourse structure and coherence of a text as a whole \cite{siddharthan2014survey}.
 
+Other papers such as Canning (2002) and Carroll et al. (1998) used parsers in addition to their hand-crafted rules, taking parse tree outputs and making the transformations there. They focused on coordination, passive voice, anaphora or pronoun replacement, and lexical tasks like synonym substitution, using word frequency to determine relative difficulty. Parsers, however, more so then than now, were slow and could time out. In Siddharthan (2004) a goal was to do simplification tasks without parsers, instead using machine learning techniques to identify clauses and attachments. Although parsers are faster now, it was an important find that machine learning could perform as an alternative to parser use. The other purpose of Siddharthan (2004) was an analysis of the implications in discourse structure of syntax-based simplification, which had not often been studied before in favor of an only sentence-level approach. Siddharthan (2004) aimed to preserve text cohesion while attaining simplicity, using syntactic features such as relative clauses, apposition, coordination and subordination before using models of discourse structure to minimize disruption \cite{siddharthan2004syntactic} \cite{siddharthan2014survey}.
+
+More recent systems have approached text simplification as a translation task that exists in one language. The Simple English Wikipedia corpus, as mentioned, opened doors for many researchers in the search for data-driven simplification techniques. Many of these systems still use parsed tree-to-tree translation. Candido Jr. et al. (2009) works on Brazilian Portuguese, using hand-crafted rules on parse trees to change passive voice to active, rearrange clauses and subject-verb-object word order, and analyze the topicalization of adverbial phrases. However, with the increased use of dependency parsers, tree structures are no longer the only option. Bott et al. (2012), working on Spanish instead of English, uses dependency parsing to simplify relative clauses, coordination and participle constructions. Siddharthan (2011) also uses dependency parsing, similarly working on relative clauses, apposition, voice conversion (passive to active), coordination, and quotation inversion \cite{siddharthan2014survey}.
+
+There is still a lack of agreement in the field on how to evaluate text simplification systems. 
 
 \begin{comment}
-[xu2015problems]
-uses readability metrics (chars per word, words per sent, etc) to support the claim that there is better and appropriate simplification happening between the different levels
-
-[siddharthan survey]
-early: Chandrasekar et al 1996: hand crafted, syntactic focus, and simplification
-relative clauses
-appositives
-coordinating clauses
-
-also early: Dras 1999: integer programming, map between TAG grammars
-light verb constructions (complex verbs)
-clausal components
-genitives (the arrival of the train -> the train's arrival)
-cleft constructions (it was his best suit that...)
-To evaluate these costs, Dras found it necessary to impose a restriction on one
-paraphrase operation per sentence, in order to avoid interactions between opera-
-tions. This was rather restrictive, but it did mean that certain problems with syn-
-tactic simplification, such as the effect on coherence, could be largely avoided.
-Indeed most work on simplification has avoided consideration of discourse level
-issues. A key insight from Dras (1999) is the following: It is the properties of the
-text as a whole that need to be optimised, not the properties of sentences in isola-
-tion.
-
-Canning 2002 & Carroll et al 1998 PSET -> parser + hand crafted rules over phrase trees
-coordinated clauses
-passive voice
-pronoun replacement/anaphora
-synonym substitution, word frequency to determine relative difficulty
-
-siddharthan on his own thesis: one goal was to perform simplification without parsers - using machine learning to identify clauses and attachment based on POS tags and shallow chunking - but this is less relevant now as parsers are much faster (but they are suboptimal when it comes to some important tasks, such as relative clause attachment)
-second goal - analysis of discourse and coherence implications of syntactic simplification, involving a detailed study of syntactic simplification with an emphasis on the preservation of text cohesion
-relative clauses, apposition, coordination, subordination - then use computational models of discourse structure to minimize disruption in discourse structure
-
-contemporary systems - monolingual translation task - accelerated thanks to the simple english wikipedia corpus
-machine translation approaches
-tree-to-tree translation
-
-candido jr et al 2009 - rule-based system, hand-crafted, brazilian portuguese - passive to active, clause order, SVO, topicalization/detopicalization of adverbial phrases
-de belder & moens - relative clauses, apposition, subordination and coordination
-
-dependency parsers now that they've been big
-bott et al, 2012 - spanish - relative clauses, coordination, participle constructions
-
-siddharthan 2011 - dependency, relative clauses, apposition, voice conversion, coordination, quotation inversion
-
-hand-crafted systems are limited in scope to syntactic simplification
-statistical systems become better
-recent attempts for hybrid systems - handwritten syntax + automatically acquired rules for lexicalised constructs
-
-lexical simplification:
-synonym substitution
-word frequency statistics
-ambiguity is a factor (walker et al 2011)
-some use of simple english wikipedia to determine word difficulty
-
 no consensus on how text simplification systems should be evaluated -
 BLEU/ROUGE - skepticism - fluency judgments in a monolingual case are more subtle than for machine translation since there are many ways to 'translate'
 readability metrics - average word and sentence length (flesch metric - flesch 1951) - only indirect assessments of grammaticality or comprehensibility (readability =\= comprehensibility)
-
-[siddharthan thesis]
-conjunction
-relative clauses
-apposition
 
 flesch: valid (correlates with teacher judgments), reliable (consistent), easy to use
 syllables per hundred words x words per sentence, followed by mapping
@@ -123,6 +69,9 @@ can be very easily abused: it is easily shown that this does not mean simplicity
 simpler words =\= shorter ones
 still uses it as an evaluation metric
 found an increase in overall text length (the guardian), decrease in average sentence length
+
+[xu2015problems]
+uses readability metrics (chars per word, words per sent, etc) to support the claim that there is better and appropriate simplification happening between the different levels
 
 [aluisio]
 readability assessment to support process of text simplification (SIMPLIFICA, a portuguese authoring tool) - evaluate a text and decide whether it is ready for a certain audience
