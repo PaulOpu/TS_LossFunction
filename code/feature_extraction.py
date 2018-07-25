@@ -16,7 +16,22 @@ dic = pyphen.Pyphen(lang='en')
 
 #######------------------- Helper Functions Paul
 
+def tok_pos_lem_tagging(text,nlp):
+    
+    tok_pos_lem_text = [(token.text,token.tag_,token.lemma_) for token in nlp(text)]
 
+    last_dot = 0
+    tok_pos_lem_sents = []
+    for ind,(tok,pos,lem) in enumerate(tok_pos_lem_text):
+        if lem == "-PRON-":
+            tok_pos_lem_text[ind] = (tok,pos,tok)
+        if tok == '.':
+            tok_pos_lem_sents += [list(zip(*tok_pos_lem_text[last_dot:ind]))]
+            last_dot = ind + 1
+
+
+    return list(zip(*tok_pos_lem_sents))
+    
 def tok_pos_tagging(text):
     
     tok_text = [nltk.word_tokenize(sent) for sent in nltk.sent_tokenize(text)]
@@ -95,8 +110,8 @@ def TTR(tok_text):
                 words[word] = 1 
     return len(words) / num_words 
 
-def TTR2(tok_text):
-    word_list = np.concatenate(tok_text)
+def TTR2(lem_text):
+    word_list = np.concatenate(lem_text)
     return (len(set(word_list)))/(len(word_list))
 
 def pos_token_count(pos_text,tag_symb):
@@ -135,6 +150,8 @@ def get_text_features_V1(textlist):
     
     #pa_feature_names = ["Mean word length", "Mean sentence length", "Basic english ratio", "Syllables per sentence", "Type token ratio", "#nouns", "#verbs", "#adjectives", "#adverbs", "#pronouns", "#commas"]
     
+    nlp = spacy.load('en_core_web_sm')
+    
     #Load English Vocabulary
     basic_df = load_basic_eng()
     english_df = load_eng_words()
@@ -148,6 +165,7 @@ def get_text_features_V1(textlist):
         #tokenize, pos tagging, lemmatize
         tok_text,pos_text = tok_pos_tagging(text)
         lem_text = lemmatize_text(tok_text,pos_text)
+        #tok_text,pos_text,lem_text = tok_pos_lem_tagging(text,nlp)
 
         #Mean Word Len, Mean Sent Len
         mean_word_len,mean_sent_len = count_sent_word_length(tok_text)
@@ -159,7 +177,7 @@ def get_text_features_V1(textlist):
         syll_sent_ratio = calc_syllables_count(tok_text)
 
         #TTR
-        ttr_ratio = TTR2(tok_text)
+        ttr_ratio = TTR2(lem_text)
 
         #POS Token per Sentence
         #Noun, Verb, Adjective, Adverb, Pronoun
@@ -253,6 +271,8 @@ class TextFeatureCreator:
         #self.pa_features_max = np.array(np.mean(get_text_features_V1(self.lsat_texts), axis=0))
         
     def get_text_features(self,texts):
+        replace = re.compile(r"(\r|\n|##)")
+        texts = [replace.sub("",text) for text in texts]
     
         features_v1 = get_text_features_V1(texts)
         features_v2 = get_text_features_V2(texts)

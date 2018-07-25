@@ -3,3 +3,4 @@ code/\.ipynb_checkpoints/
 code/data/wikipedia_aligned_dep.csv
 code/data/weebit
 code/data/newsela
+code/data/clean_newsela
