@@ -7,6 +7,7 @@ from nltk.corpus import wordnet
 from collections import Counter
 import matplotlib.pyplot as plt
 import pyphen
+import re
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error
 import spacy
