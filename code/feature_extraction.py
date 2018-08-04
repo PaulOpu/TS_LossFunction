@@ -1,6 +1,7 @@
 import prepare_data
 import pandas as pd
 import nltk
+import re
 import numpy as np
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
@@ -10,7 +11,7 @@ import pyphen
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error
 import spacy
-nlp = spacy.load('en', disable=['ner', 'textcat', 'tagger'])
+nlp = spacy.load('en_core_web_sm', disable=['ner', 'textcat', 'tagger'])
 dic = pyphen.Pyphen(lang='en')
 
 
@@ -163,9 +164,9 @@ def get_text_features_V1(textlist):
     for text in textlist:
     
         #tokenize, pos tagging, lemmatize
-        tok_text,pos_text = tok_pos_tagging(text)
-        lem_text = lemmatize_text(tok_text,pos_text)
-        #tok_text,pos_text,lem_text = tok_pos_lem_tagging(text,nlp)
+        #tok_text,pos_text = tok_pos_tagging(text)
+        #lem_text = lemmatize_text(tok_text,pos_text)
+        tok_text,pos_text,lem_text = tok_pos_lem_tagging(text,nlp)
 
         #Mean Word Len, Mean Sent Len
         mean_word_len,mean_sent_len = count_sent_word_length(tok_text)
@@ -183,7 +184,7 @@ def get_text_features_V1(textlist):
         #Noun, Verb, Adjective, Adverb, Pronoun
         token_count = []
         for tag in ["N","VB","J","RB","PRP",","]:
-            token_count += [pos_token_count(pos_text,tag)]
+                token_count += [pos_token_count(pos_text,tag)]
 
         #tok_text,pos_text,lem_text
         text_features += [np.concatenate([[mean_word_len,mean_sent_len,basic_eng_ratio,syll_sent_ratio,ttr_ratio],token_count])]
