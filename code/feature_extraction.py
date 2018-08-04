@@ -184,7 +184,8 @@ def get_text_features_V1(textlist):
         #POS Token per Sentence
         #Noun, Verb, Adjective, Adverb, Pronoun
         token_count = []
-        for tag in ["N","VB","J","RB","PRP",","]:
+        
+        for tag in ["N","VB","J","RB","PRP"]:
                 token_count += [pos_token_count(pos_text,tag)]
 
         #tok_text,pos_text,lem_text
@@ -256,8 +257,7 @@ class TextFeatureCreator:
             "#verbs", 
             "#adjectives", 
             "#adverbs", 
-            "#pronouns", 
-            "#commas"]+[
+            "#pronouns"]+[
             "Subordination", 
             "Complements", 
             "Coordination", 
