@@ -67,33 +67,26 @@
       title  = "Law School Admission Test",
       organization = "Law School Admission Council, Inc.",
       url    = "https://www.lsac.org/free-sample-test/",
-      year   = "June 2007; accessed May 2018"
+      year   = "June 2007 (accessed May 2018)"
     }
 
 @manual{LSAT:Kaplan,
       title  = "Free LSAT Practice",
       organization = "Kaplan, Inc.",
       url    = "https://www.kaptest.com/lsat/free/lsat-practice",
-      year   = "2018; accessed May 2018"
+      year   = "2018 (accessed May 2018)"
     }
 
 @manual{LSAT:VarsityTutors,
       title  = "LSAT Practice Tests",
       organization = "Varsity Tutors.",
       url    = "https://www.varsitytutors.com/lsat-practice-tests",
-      year   = "2007-2018; accessed May 2018"
+      year   = "2007-2018 (accessed May 2018)"
     }
 
 @manual{LSAT:Bluecoast,
       title  = "LSAT Sample Practice Questions",
       organization = "Blue Coast Math Tutoring",
       url    = "http://www.bluecoast.org/nonprofit/math/mathematics/lsatlogic.pdf",
-      year   = "March 2004; accessed May 2018"
+      year   = "March 2004 (accessed May 2018)"
     }
-
-@Misc{Pyphen,
-  title =     {{Pyphen}: Hyphenation in pure {Python}},
-  year =      {2013-2018},
-  url = "http://www.pyphen.org/",
-  note = {[Online; accessed May 2018]}
-}

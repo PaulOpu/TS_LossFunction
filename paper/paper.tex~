@@ -14,7 +14,6 @@
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{comment}
-\usepackage{url}
 
 \title{Learning a Loss Function for Text Simplification}
 \author{Rebekah Cramerus, Malte Klingenberg, Paul Opuchlich}
@@ -41,9 +40,9 @@ The second part of our project was the selection of an appropriate architecture 
 
 Finally, the results of our loss function neural network, analysis and conclusions are covered in Sections 4, 5 and 6.
 
-\section{Literature Review}
+\section{Rule-based Function for Difficulty Score}
 
-\subsection{Linguistic Research} \label{linglitreview}
+\subsection{Literature Review}
 
 Looking at previous literature was an integral part of our feature selection process. To properly determine text complexity, it was necessary that each of our chosen features have strong linguistic motivation. We looked at papers published on datasets for text simplification, previous approaches to the text simplification task, and experiments similar to ours on determining text complexity.
 
@@ -57,33 +56,38 @@ Other papers such as Canning (2002) and Carroll et al. (1998) used parsers in ad
 
 More recent systems have approached text simplification as a translation task that exists in one language. The Simple English Wikipedia corpus, as mentioned, opened doors for many researchers in the search for data-driven simplification techniques. Many of these systems still use parsed tree-to-tree translation. Candido Jr. et al. (2009) works on Brazilian Portuguese, using hand-crafted rules on parse trees to change passive voice to active, rearrange clauses and subject-verb-object word order, and analyze the topicalization of adverbial phrases. However, with the increased use of dependency parsers, tree structures are no longer the only option. Bott et al. (2012), working on Spanish instead of English, uses dependency parsing to simplify relative clauses, coordination and participle constructions. Siddharthan (2011) also uses dependency parsing, similarly working on relative clauses, apposition, voice conversion (passive to active), coordination, and quotation inversion \cite{siddharthan2014survey}.
 
-There is still a lack of agreement in the field on how to evaluate text simplification systems. Two metrics used in evaluating machine translation output, BLEU and ROUGE, have been used on text simplification results, but there is still skepticism about these methods. A monolingual 'translation' (complex English to simple English) is a different case from a bilingual one (English to, say, French). Essentially, there are more ways to simplify a sentence than there are to translate one, and so fluency judgments may be trickier. Another common method used to evaluate simplified text is readability metrics, such as a text's Flesch score. The Flesch metric originally was published in 1951, and remains quite simple: it is calculated using the average number of syllables per hundred words in a text multiplied by the average number of words per sentence, and then mapped to a specific reading level. While it is simple, reliable and valid in the sense that it has been shown to match judgments by educators, Siddharthan asserts that the Flesch metric, like other readability metrics, does not directly measure complexity. Readability and comprehensibility are not the same thing, just as shorter words are not always simpler ones. The Flesch metric can be abused by purposefully creating short sentences with difficult words \cite{siddharthan2014survey}.
+There is still a lack of agreement in the field on how to evaluate text simplification systems. 
 
-Consensus on this topic does not seem to be fully reached, though. Despite the problems with readability vs. complexity, scores like the Flesch metric are still often used as evaluation metrics, including by Siddharthan in his earlier thesis \cite{siddharthan2004syntactic}. Xu et al. (2015) use features traditionally used in readability scoring, such as the number of characters per word and words per sentence, to support the claim that there is better and more appropriate simplification across levels in the Newsela dataset than in the Wikipedia Simple English dataset \cite{xu2015problems}. 
+\begin{comment}
+no consensus on how text simplification systems should be evaluated -
+BLEU/ROUGE - skepticism - fluency judgments in a monolingual case are more subtle than for machine translation since there are many ways to 'translate'
+readability metrics - average word and sentence length (flesch metric - flesch 1951) - only indirect assessments of grammaticality or comprehensibility (readability =\= comprehensibility)
 
-Finally, Aluisio et al. (2010) developed a readability assessment tool for Brazilian Portuguese meant to assist in the process of text simplification (specifically SIMPLIFICA, a Portuguese authoring tool) \cite{aluisio2010readability}. The authors at times use the two terms interchangeably, and any distinction drawn between them is unclear. They use machine learning techniques to train a classification model which assigns a label of rudimentary, basic or advanced to a text. A total of 59 features were chosen for their experiment. In their features were included those often used in readability metrics (referred to as 'cognitively motivated'), such as the Flesch index itself, counts of words, sentences, paragraphs, and average numbers of words in a sentence, syllables in a word, sentences in a paragraph. There were also syntactic constructions commonly used in text simplification research: NP modifiers, clauses, adverbial phrases, apposition, relative clauses, coordination, subordination, and passive voice. Lexical features such as type-token ratio, ambiguities, word frequencies and connectives were also involved, as well as a variety of features involving n-gram probabilities and perplexities. Feature experiments found that the strongest correlation to complexity (or readability) was found in the following features, in descending order: words per sentence, apposition, clauses, Flesch index, number of words before the main verb, sentences per paragraph, relative clauses, and syllables per word. Aluisio et al. contend that these different features can complement one another, and show that while they did split the features into subsets (cognitively motivated, n-grams, syntactic, and so on), the combination of all features consistently yields better results than any of the subsets \cite{aluisio2010readability}.
+flesch: valid (correlates with teacher judgments), reliable (consistent), easy to use
+syllables per hundred words x words per sentence, followed by mapping
+can be very easily abused: it is easily shown that this does not mean simplicity if you purposefully create, for example, short sentences with difficult words
+simpler words =\= shorter ones
+still uses it as an evaluation metric
+found an increase in overall text length (the guardian), decrease in average sentence length
 
-\subsection{Text Simplification Using Neural Networks}
+[xu2015problems]
+uses readability metrics (chars per word, words per sent, etc) to support the claim that there is better and appropriate simplification happening between the different levels
 
-Paul, Malte, write your literature review here
+[aluisio]
+readability assessment to support process of text simplification (SIMPLIFICA, a portuguese authoring tool) - evaluate a text and decide whether it is ready for a certain audience
+uses machine learning techniques
+at times uses readability and complexity interchangeably, and the distinction they draw is not clear, features used are between the two (the readability assessment tool automatically detects the level of complexity of a text at any moment of the authoring process...)
+uses in a classiication model (rudimentary, basic or advanced)
+59 features - cognitively motivated, syntactic, and n-gram language models - # words, sent, paragraphs, POS tags, avg words/sent syll/word, sent/paragraph, Flesch index, lexical frequencies, NP modifiers, all flavors of connectives, TTR, pronoun-NP, conjunctions, ambiguities lexical, clauses, adverbial phrases, apposition, passive voice, relative clauses, coordination, subordination, probabilities and perplexities of n grams to tri
+feature experiments led highest correlation to be : words per sentence, apposition, clauses, flesch index, words before main verb, sentences per paragraph, relative clauses, syllables per word
+shows that traditional cognitively motivated features can be complemented with more superficial features
+combination of all features consistently yields better results than any subsets - performances among subsets vary considerably - showing that the combination is more robus across different learning techniques
 
-\section{Rule-based Function for Difficulty Score}
-
-\subsection{Data}
-
-We used the Newsela corpus, described in \ref{linglitreview} as a dataset meant to improve upon the previously standard Wikipedia Simple English corpus, to train our model of text complexity. The Newsela corpus includes a large range of text levels, the lowest among them being suitable for lower elementary school students, according to their website. The original articles, given a Newsela scoring label as well, are also included. 
-
-Although the lower end of text simplicity is adequately covered by the Newsela corpus, we were unconvinced that the maximum levels of the corpus (generally the original news articles) would represent the higher degrees of complexity possible in language. For that reason, we added fifty passages taken manually from practice Law School Admission Tests (LSAT) used globally and in English \cite{LSAT:LSAC} \cite{LSAT:VarsityTutors} \cite{LSAT:Kaplan} \cite{LSAT:Bluecoast}. These passages are written intentionally to be very difficult, but must still be comprehensible. Therefore, we used them to represent the highest levels of difficulty in our training data.
-
-\subsection{Preprocessing}
-
-The Newsela corpus still required some cleaning before reaching a usable state. Line breaks and subheaders had to be removed, along with HTML tags, non-word dividers, markdown segments such as image URLs, multiple whitespaces, and other general noise. After cleaning, the corpus and the LSAT texts all required a preprocessing stage. We converted all words to lowercase, and then using spaCy found lemmas, part of speech (POS) tags, and dependency tags for all words.
+\end{comment}
 
 \subsection{Features}
 
-The relative newness of the field and the variety in previous literature that we found meant that there were many potential features that could be used. Features used by others ranged in number from two to 100: ours sit at a moderate 20, enumerated below in Table 1 [\ref{feature_table}].
 
-Our features can be split up into different categories: syntactic, lexical, and those that, as previously discussed, are often used in readability metrics. Of the syntactic features, there are those which involve dependency tags, for which we used spaCy's dependency parser \cite{honnibal-johnson:2015:EMNLP}, and there are those which use part-of-speech tags, for which we used the Natural Language Toolkit (NLTK) \cite{bird2009nltk}. We had considered adding features related to text cohesion or coherence, namely discourse structure, but decided against it due to the lack of literature on what features exactly would be used. 
 
 \begin{table}[htbp]
 \centering
@@ -104,56 +108,41 @@ Syntactic: POS Tags & Nouns \\
  & Adjectives \\
  & Adverbs \\
  & Pronouns \\
-Lexical & Type Token Ratio \\
+Lexical & Mean Word Length \\
+ & Type Token Ratio \\
  & Basic English Ratio \\
-Readability & Mean Word Length \\
- & Syllables per Sentence \\
- & Sentence Length
+Other & Syllables per Sentence \\
+ & Sentence Length \\
+ & Commas
 \\\hline
 \end{tabular}
 \label{feature_table}
 \caption{Features for Text Complexity Function}
 \end{table}
 
-In \ref{linglitreview} we gave an overview of previous literature, focusing on the linguistic justification for the features that we chose. Next we provide a more precise definition for the chosen features and go into further detail on how each one was extracted.
+lexical features: average word length, ratio of basic english
+words, type-token ratio... why not others?
+syntactical features: number of subordinate clauses,
+prepositional phrases, passive voice...
+semantic features: too hard (cohesion, coherence, discourse relations)
 
 \subsubsection{Syntactic Features}
 
-Syntactic complexity is integral to determining complexity of a text as a whole; more syntactically dense sentences not only require more effort to parse, but also provide more semantic information. We chose to use simple part of speech tags and dependency parsing to obtain our features. All tags (dependency and part of speech) were generated using spaCy \cite{honnibal-johnson:2015:EMNLP}.
-
-Some of our features had straightforward corresponding dependency tags, specifically: \textbf{Coordination} (\texttt{cc}), \textbf{Apposition} (\texttt{appos}), \textbf{Parataxis} (\texttt{parataxis}), \textbf{Negation} (\texttt{neg}), and \textbf{Prepositional Phrases} (\texttt{prep}). \textbf{Passive Verbs} were counted as a sum of \texttt{nsubjpass} (for main verbs) and \texttt{csubjpass} (for clauses). \textbf{Auxiliary Verbs}, similarly, were a sum of \texttt{aux} and \texttt{auxpass}, so that passive auxiliary verbs were also counted.
-
-\textbf{Subordination} was counted using the dependency tags \texttt{acl} (adjectival clauses, or clausal modifiers of nouns), \texttt{advcl} (adverbial clauses) and \texttt{relcl} (relative clauses). \textbf{Complements}, clauses which function as objects, are counted by \texttt{ccomp} (clausal complements with their own subjects) and \texttt{xcomp} (clausal complements with no subject). \textbf{Modifiers} were counted as a sum of \texttt{advmod} (adverbial modifiers), \texttt{amod} (adjectival modifiers), \texttt{nummod} (numeric modifiers), and \texttt{nmod} (noun modifiers).
-
-Simple POS tags were collected according to the Penn Treebank POS tag system, for \textbf{Nouns}, \textbf{Verbs}, \textbf{Adjectives}, \textbf{Adverbs}, and \textbf{Pronouns}.
-
 \subsubsection{Lexical Features}
 
-Ideally, to measure how difficult the vocabulary of a given text is, one would have access to a difficulty score for every possible word. Then, it would be simple to obtain an overall lexical complexity score for a text. Unfortunately, this is at the moment unrealistic. There are many aspects of a word to take into account when measuring its difficulty: linguistic origins, length of the word, morphological structure and complexity, and frequency used in speech, among others.
+\subsubsection{Other Counts}
 
-We chose two straightforward measures to include as features: the \textbf{Type Token Ratio} and the \textbf{Basic English Ratio}.
-
-The type-token ratio (TTR) is a standard to evaluate lexical diversity. It compares the unique number of words in a text (types) with the total number of words in the text (tokens). A high TTR implies more lexical diversity than a low value.
-
-The basic English ratio, on the other hand, takes a dictionary of basic English words \cite{ogden1932b}. It is a proportion of the number of basic words in the dictionary that appear in the text to the number of unique words in the text. When more difficult words are used in a text, this ratio decreases.
-
-\subsubsection{Readability Features}
-
-While we did not want to focus on traditional readability features, we still chose to include three major ones with the understanding that, as suggested in Aluisio et al., they can complement the usage of syntactic and lexical features \cite{aluisio2010readability}.
-
-\textbf{Mean Word Length} is the number of characters per word. \textbf{Sentence Length} is the number of word per sentence. Finally, we counted the number of \textbf{Syllables per Sentence} using the Python package Pyphen to hyphenate given words \cite{Pyphen}.
-
-\subsection{Methods}
-
-normalization of features
-data used for regression model
+\subsection{Scoring}
 
 \section{Neural Network Loss Function}
 
 \subsection{Data}
 
-this should be about the data which we scored using our system and then fed to neural network
-distribution of scores
+British Council „LearnEnglish“, News in levels etc.
+but: only small number of difficulty levels
+hopefully: Newsela (quasi-continuous difficulty scale)
+LSAT
+wikipedia
 
 \subsection{Methods}
 
@@ -162,6 +151,20 @@ distribution of scores
 \section{Discussion}
 
 \section{Conclusion}
+
+% \[ \min_{\beta} L(\beta) = \frac{1}{2N}\sum_{i=1}^{N}(\left \langle \beta, v_{i}  \right \rangle + \beta_{0} - y_{i})^{2}  + \frac{\lambda}{2} \lVert \beta \rVert_2^2\]
+
+%%\begin{figure}
+%%\centering
+%%\includegraphics[width=.5\textwidth]{total_num_relations.png}
+%%\caption{\label{fig:totalrel}The number of annotated discourse relations in each of the five texts, for both English and Russian.}
+%%\end{figure}
+
+%%use \ref{fig:name}
+
+\cite{bird2009nltk}
+\cite{aluisio2010readability}
+\cite{honnibal-johnson:2015:EMNLP}
 
 \bibliographystyle{apalike}
 \bibliography{workscited}
