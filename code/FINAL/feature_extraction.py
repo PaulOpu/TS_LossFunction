@@ -17,6 +17,14 @@ dic = pyphen.Pyphen(lang='en')
 
 data_path = "/project/ts_cost_function/TS_LossFunction/code/data/"
 
+#######------------------- Description of this file
+
+# The following functions and classes are used to calculate the different features of a text
+# We seperated these processes from the notebooks, because the TextFeatureCreator (wrapper for all features)
+# is used in several notebooks
+
+#######-------------------
+
 
 #######------------------- Helper Functions Paul
 
@@ -117,8 +125,6 @@ def get_text_features_V1(textlist):
     #   - Adjectives
     #   - Adverb
     #   - Pronoun
-    
-    #pa_feature_names = ["Mean word length", "Mean sentence length", "Basic english ratio", "Syllables per sentence", "Type token ratio", "#nouns", "#verbs", "#adjectives", "#adverbs", "#pronouns", "#commas"]
     
     nlp = spacy.load('en_core_web_sm')
     
